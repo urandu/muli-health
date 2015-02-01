@@ -4,7 +4,7 @@
 <div class="container-fluid">
 <div class="row">
 <div class="col-lg-12">
-    <h1 class="page-header">Laboratory</h1>
+    <h1 class="page-header">Accounts</h1>
 </div>
 <!-- /.col-lg-12 -->
 <div class="col-lg-12">
@@ -19,12 +19,12 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
 
-    <li class="active"><a href="#lab_tests" data-toggle="tab">Lab tests </a>
+    <li class="active"><a href="#lab_tests" data-toggle="tab">Prescription </a>
     </li>
     <!--<li><a href="#lab_results" data-toggle="tab">Lab tests results</a>
     </li>-->
-    <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
-    </li>
+    <!--<li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
+    </li>-->
 
 </ul>
 
@@ -40,23 +40,31 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Lab test</th>
-                    <th>Result</th>
-                    <th>Time</th>
+                    <th>Drug</th>
+                    <th>Amount</th>
+
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Malaria</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
+                    <td>actm</td>
+                    <td><strong>ksh.200</strong></td>
+
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>TB</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
+                    <td>panadol</td>
+                    <td><strong>ksh.50</strong></td>
+
+                </tr>
+
+                <thead>
+                <tr>
+                    <th>.</th>
+                    <th>Total</th>
+                    <th>ksh.250</th>
+
                 </tr>
 
                 </tbody>
@@ -66,7 +74,7 @@
         </div>
 
         <!-- /.table-responsive -->
-        <button type="button" class="btn btn-primary btn-lg pull-right">Return to doctor</button>
+        <button type="button" class="btn btn-primary btn-lg pull-right">Accept payment and send to pharmacy</button>
     </div>
 </div>
 

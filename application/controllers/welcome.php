@@ -19,7 +19,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('new_patient');
+
+        if(!is_logged_in())
+        {
+            $this->load->view('login');
+        }else {
+
+            $this->load->view('new_patient');
+        }
+
 	}
 
 

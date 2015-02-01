@@ -19,7 +19,14 @@ class Doctor extends CI_Controller {
      */
     public function index()
     {
-        $this->load->view('doctor');
+        if(!is_logged_in())
+        {
+            $this->load->view('login');
+        }else
+        {
+            $this->load->view('doctor');
+        }
+
     }
 
 

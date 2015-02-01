@@ -4,7 +4,7 @@
 <div class="container-fluid">
 <div class="row">
 <div class="col-lg-12">
-    <h1 class="page-header">Laboratory</h1>
+    <h1 class="page-header">Pharmacy</h1>
 </div>
 <!-- /.col-lg-12 -->
 <div class="col-lg-12">
@@ -19,7 +19,7 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
 
-    <li class="active"><a href="#lab_tests" data-toggle="tab">Lab tests </a>
+    <li class="active"><a href="#lab_tests" data-toggle="tab">Prescription </a>
     </li>
     <!--<li><a href="#lab_results" data-toggle="tab">Lab tests results</a>
     </li>-->
@@ -40,23 +40,23 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Lab test</th>
-                    <th>Result</th>
-                    <th>Time</th>
+                    <th>Drug</th>
+                    <th>payment</th>
+                    <th>dosage</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Malaria</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
+                    <td>actm</td>
+                    <td><strong>Paid</strong></td>
+                    <td><input type="text"></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>TB</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
+                    <td>panadol</td>
+                    <td><strong>Paid</strong></td>
+                    <td><input type="text"></td>
                 </tr>
 
                 </tbody>
@@ -66,7 +66,7 @@
         </div>
 
         <!-- /.table-responsive -->
-        <button type="button" class="btn btn-primary btn-lg pull-right">Return to doctor</button>
+        <button type="button" class="btn btn-primary btn-lg pull-right">Issue</button>
     </div>
 </div>
 

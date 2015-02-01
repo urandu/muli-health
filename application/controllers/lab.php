@@ -19,7 +19,14 @@ class Lab extends CI_Controller {
      */
     public function index()
     {
-        $this->load->view('lab');
+        if(!is_logged_in())
+        {
+            $this->load->view('login');
+        }else
+        {
+            $this->load->view('lab');
+        }
+
     }
 
 

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pharmacy extends CI_Controller {
+class Finance extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -24,7 +24,7 @@ class Pharmacy extends CI_Controller {
             $this->load->view('login');
         }else
         {
-            $this->load->view('pharmacy');
+            $this->load->view('finance');
         }
 
     }
