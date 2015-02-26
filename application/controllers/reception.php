@@ -31,6 +31,7 @@ class Reception extends CI_Controller {
 
     public function new_patient()
     {
+        $patient_id=$this->input->post('patient_id');
         $name=$this->input->post('name');
         $sex=$this->input->post('sex');
         $dob=$this->input->post('dob');
@@ -40,7 +41,10 @@ class Reception extends CI_Controller {
         $insured=$this->input->post('insured');
         $nhif=$this->input->post('nhif');
 
-        echo('i was called, here i am!');
+        //load reception model
+        $this->load->model('reception_model');
+        $this->reception_model->new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif);
+
     }
 
 

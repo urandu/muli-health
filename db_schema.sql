@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2015 at 10:15 AM
+-- Generation Time: Feb 26, 2015 at 02:01 PM
 -- Server version: 5.5.35
 -- PHP Version: 5.4.6-1ubuntu1.5
 
@@ -23,21 +23,97 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `allergies`
+--
+
+CREATE TABLE IF NOT EXISTS `allergies` (
+  `allergy_id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `patient_id` varchar(60) NOT NULL,
+  `allergy` varchar(255) NOT NULL,
+  PRIMARY KEY (`allergy_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diagnosis`
+--
+
+CREATE TABLE IF NOT EXISTS `diagnosis` (
+  `diagnosis_id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `diagnosis` text,
+  `treatment` text,
+  `patient_id` varchar(60) NOT NULL,
+  `staff_id` bigint(21) NOT NULL,
+  `visit_id` bigint(21) NOT NULL,
+  PRIMARY KEY (`diagnosis_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lab_tests`
+--
+
+CREATE TABLE IF NOT EXISTS `lab_tests` (
+  `test_id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `patient_id` varchar(60) NOT NULL,
+  `test_done` varchar(255) DEFAULT NULL,
+  `test_result` varchar(255) DEFAULT NULL,
+  `staff_id` bigint(21) NOT NULL,
+  PRIMARY KEY (`test_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_profile`
+--
+
+CREATE TABLE IF NOT EXISTS `medical_profile` (
+  `profile_id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `patient_id` varchar(60) NOT NULL,
+  `present_complaint` longtext,
+  `complaint_history` longtext,
+  `other_illness` text,
+  `surgical_history` text,
+  `blood_pressure` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `patient_profile`
 --
 
 CREATE TABLE IF NOT EXISTS `patient_profile` (
   `patient_id` varchar(60) NOT NULL,
-  `first_name` varchar(60) DEFAULT NULL,
-  `middle_name` varchar(60) DEFAULT NULL,
-  `last_name` varchar(60) DEFAULT NULL,
+  `name` varchar(60) DEFAULT NULL,
   `gender` varchar(10) NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `insured` varchar(20) DEFAULT NULL,
   `nhif` varchar(20) DEFAULT NULL,
+  `address` varchar(60) DEFAULT NULL,
+  `dob` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prescription`
+--
+
+CREATE TABLE IF NOT EXISTS `prescription` (
+  `prescription_id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `prescription` text NOT NULL,
+  `patient_id` varchar(60) NOT NULL,
+  `staff_id` bigint(21) NOT NULL,
+  `visit_id` bigint(21) NOT NULL,
+  PRIMARY KEY (`prescription_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -58,18 +134,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_name` varchar(40) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `name`, `phone`, `dob`, `gender`, `id_number`, `role`, `password`, `email`, `user_name`) VALUES
-(1, '0', '0', '0', '0', 0, 0, 'd41d8cd98f00b204e9800998ecf8427e', '', '0'),
-(2, 'bildad namawa', '0726430386', '1992-02-20', 'm', 29364156, 0, 'f9f16d97c90d8c6f2cab37bb6d1f1992', '', 'doctor'),
-(4, 'pharmacist', '0726430386', '1990-12-20', 'm', 29364156, 1, '0a9b3767c8b9b69cea129110e8daeda2', 'bildadnamaw@gmail.comm', 'receptionist'),
-(5, 'lab', '0726430386', '1952-04-02', 'm', 29364156, 2, '2f6f0be2c74d12b3ebae21b01e954a23', 'bildadnamawa@gmail.com', 'lab attendant'),
-(6, 'pharmacist', '0726430386', '1992-12-15', 'm', 29364156, 3, 'fd3051577824ada21b3df777812c66fa', 'bildadnamawa@gmail.com', 'pharmacist'),
-(7, 'pharmacist', '0726430386', '1992-12-15', 'm', 29364156, 4, '7a90e38a211ece1c346928e7d1f3e968', 'bildadnamawa@gmail.com', 'accounts');
 
 -- --------------------------------------------------------
 
