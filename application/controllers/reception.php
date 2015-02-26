@@ -29,6 +29,20 @@ class Reception extends CI_Controller {
 
     }
 
+    public function new_patient()
+    {
+        $name=$this->input->post('name');
+        $sex=$this->input->post('sex');
+        $dob=$this->input->post('dob');
+        $phone=$this->input->post('phone');
+        $email=$this->input->post('email');
+        $address=$this->input->post('address');
+        $insured=$this->input->post('insured');
+        $nhif=$this->input->post('nhif');
+
+        echo('i was called, here i am!');
+    }
+
 
 }
 

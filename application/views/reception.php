@@ -35,38 +35,53 @@
 
                                     <div class="row">
 
+                                        <form method="post" action="<?php echo(base_url()); ?>reception/new_patient" >
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Name</label>
-												<input class="form-control" id="name" placeholder="Enter patient name">
+												<input class="form-control" name="name" id="name" placeholder="Enter patient name">
 											</div>
 											<div class="form-group">
 												<label>Address</label>
-												<input class="form-control" id="address" placeholder="Enter patient address">
+												<input class="form-control" name="address" id="address" placeholder="Enter patient address">
 											</div>
 											<div class="form-group">
                                             <label>Sex</label>
-                                            <select id="sex" class="form-control">
+                                            <select id="sex" name="sex" class="form-control">
                                                 <option value="male" >male</option>
                                                 <option value="female" >female</option>
                                             </select>
                                         </div>
+                                            <div class="form-group">
+                                                <label>Insured</label>
+                                                <select id="insured" name="insured" class="form-control">
+                                                    <option value="yes" >yes</option>
+                                                    <option value="no" >no</option>
+                                                </select>
+                                            </div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Date of Birth</label>
-												<input type="date" class="form-control" id="dob" placeholder="Enter DoB">
+												<input type="date" class="form-control" name="dob" id="dob" placeholder="Enter DoB">
 											</div>
 											<div class="form-group">
 												<label>Phone</label>
-												<input class="form-control" id="phone" placeholder="Enter phone number">
+												<input class="form-control" name="phone" id="phone" placeholder="Enter phone number">
 											</div>
 											<div class="form-group">
 												<label>Email</label>
-												<input type="email" class="form-control" id="email" placeholder="Enter email address">
+												<input type="email" name="email" class="form-control" id="email" placeholder="Enter email address">
 											</div>
-                                            <button type="button" class="btn btn-primary btn-lg pull-right">Save</button>
+
+
+                                            <div class="form-group">
+                                                <label>NHIF NO.</label>
+                                                <input type="text" name="nhif" class="form-control" id="nhif" placeholder="Enter nhif number">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-lg pull-right">Save</button>
 										</div>
+                                        </form>
 									</div>
                                 </div>
                                 
