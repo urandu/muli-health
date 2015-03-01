@@ -11,8 +11,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
-                        <label for="card_no" >Card Number: </label>
-                        <p id="card_no"></p>
+                        <strong>Patient ID:</strong> <?php echo($patient[0]->patient_id);?>
+                        &nbsp; &nbsp; <strong>Name:</strong> <?php echo($patient[0]->name);?>
+                        &nbsp; &nbsp; <strong>DoB:</strong> <?php echo($patient[0]->dob);?>
+                        &nbsp; &nbsp; <strong>Sex:</strong> <?php echo($patient[0]->sex);?>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -20,14 +22,15 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#medical_profile" data-toggle="tab">Medical profile</a>
                             </li>
-                            <li><a href="#diagnosis" data-toggle="tab">Diagnosis and treatment</a>
-                            </li>
+
                             <li><a href="#lab_tests" data-toggle="tab">Lab tests </a>
+                            </li>
+                            <li><a href="#diagnosis" data-toggle="tab">Diagnosis and treatment</a>
                             </li>
                             <!--<li><a href="#lab_results" data-toggle="tab">Lab tests results</a>
                             </li>-->
-                            <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
-                            </li>
+                           <!-- <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
+                            </li>-->
 
                         </ul>
 
@@ -83,7 +86,7 @@
                                             <!-- /.table-responsive -->
 
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-lg pull-right">Save</button>
+                                       <!-- <button type="button" class="btn btn-primary btn-lg pull-right">Save</button>-->
                                     </div>
                                 </div>
 

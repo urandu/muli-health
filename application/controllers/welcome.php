@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
             $this->load->view('login');
         }else {
 
-            $this->load->view('new_patient');
+            $this->load->view('login');
         }
 
 	}

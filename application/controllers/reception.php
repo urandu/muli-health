@@ -53,11 +53,17 @@ class Reception extends CI_Controller {
     {
 
         $patient_id=$this->input->post("patient_id");
+        if(!$patient_id)
+        {
+            $this->load->view('reception_home');
+            return false;
+        }
         $this->load->model('reception_model');
         $patient=$this->reception_model->get_patient($patient_id);
         if($patient)
         {
             $data['patient']=$patient;
+            $data['visit_status']=$this->reception_model->check_visit_status($patient_id);
             $this->load->view('reception_patient', $data);
         }
         else
@@ -67,6 +73,17 @@ class Reception extends CI_Controller {
         }
     }
 
+    public function start_visit($patient_id)
+    {
+        $this->load->model('reception_model');
+        if(!$this->reception_model->check_visit_status($patient_id))
+        {
+            $this->reception_model->start_visit($patient_id);
+        }
+        //$this->reception_model->start_visit($patient_id);
+        $this->load->view('reception_home');
+
+    }
 
 
 }

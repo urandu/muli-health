@@ -35,6 +35,34 @@ class Reception_model extends CI_Model
 
     }
 
+    function start_visit($patient_id)
+    {
+
+        $details=array(
+            'patient_id'=>$patient_id,
+            'current_stage'=>1,
+            'visit_status'=>1
+        );
+
+        return $this->db->insert('visits',$details);
+
+    }
+
+    function check_visit_status($patient_id)
+    {
+        $this->db->where('patient_id', $patient_id);
+        $this->db->where('visit_status', 1);
+        $query = $this->db->get('visits');
+
+        if($query->num_rows >0)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
 
