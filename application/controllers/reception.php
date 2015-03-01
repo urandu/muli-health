@@ -24,7 +24,7 @@ class Reception extends CI_Controller {
             $this->load->view('login');
         }else
         {
-            $this->load->view('reception');
+            $this->load->view('reception_home');
         }
 
     }
@@ -46,6 +46,27 @@ class Reception extends CI_Controller {
         $this->reception_model->new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif);
 
     }
+
+
+
+    public function get_patient()
+    {
+
+        $patient_id=$this->input->post("patient_id");
+        $this->load->model('reception_model');
+        $patient=$this->reception_model->get_patient($patient_id);
+        if($patient)
+        {
+            $data['patient']=$patient;
+            $this->load->view('reception_patient', $data);
+        }
+        else
+        {
+            $data['message_error'] = TRUE;
+            $this->load->view('reception', $data);
+        }
+    }
+
 
 
 }

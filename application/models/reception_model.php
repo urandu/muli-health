@@ -22,6 +22,19 @@ class Reception_model extends CI_Model
 
 
     }
+    function get_patient($patient_id)
+    {
+
+        $sql="SELECT * FROM patient_profile WHERE patient_id=".$patient_id;
+        $query=$this->db->query($sql);
+        if($query->num_rows>0) {
+            return $query->result();
+        }else{
+            return false;
+        }
+
+    }
+
 
 
 

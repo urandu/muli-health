@@ -37,6 +37,12 @@
 
                                         <form method="post" action="<?php echo(base_url()); ?>reception/new_patient" >
 										<div class="col-lg-6">
+
+                                            <div class="form-group">
+                                                <label>patient_no</label>
+                                                <input class="form-control" name="patient_id" id="patient_id" placeholder="Enter phone number">
+                                            </div>
+
 											<div class="form-group">
 												<label>Name</label>
 												<input class="form-control" name="name" id="name" placeholder="Enter patient name">
