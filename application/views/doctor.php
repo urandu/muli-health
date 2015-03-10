@@ -16,6 +16,8 @@
                         &nbsp; &nbsp; <strong>DoB:</strong> <?php echo($patient[0]->dob);?>
                         &nbsp; &nbsp; <strong>Sex:</strong> <?php echo($patient[0]->sex);?>
                     </div>
+
+                    <input type="hidden" id="patient_id" value="<?php echo($patient[0]->patient_id);?>">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <!-- Nav tabs -->
@@ -34,6 +36,7 @@
 
                         </ul>
 
+                        <input type="hidden" id="visit_id" value="<?php echo($visit_id); ?>">
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="medical_profile">
@@ -45,13 +48,18 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Complaint</label>
-                                            <textarea id="complaint" class="form-control" rows="3"></textarea>
+                                            <textarea id="complaint1" class="form-control" rows="3"><?php if(isset($medical_profile->present_complaint)){
+                                                    echo($medical_profile->present_complaint);
+                                                } ?></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>History</label>
-                                            <textarea id="history" class="form-control" rows="3"></textarea>
+                                            <textarea id="history1" class="form-control" rows="3"><?php if(isset($medical_profile->complaint_history)){
+                                                    echo($medical_profile->complaint_history);
+                                                } ?></textarea>
                                         </div>
 
+                                        <button type="button" onclick="add_medical_profile()" id="save_medical_profile" class="btn btn-primary btn-medium pull-right">Save</button>
                                     </div>
                                     <div class="col-lg-6">
 
@@ -61,28 +69,41 @@
                                                     <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Alergies</th>
+                                                        <th>Allergy</th>
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Sulphur</td>
+                                                    <tbody id="allergy_body" >
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Nuts</td>
+                                                    <?php if(isset($allergies) && $allergies >0)
+                                                    {
+                                                        foreach($allergies as $allergy)
+                                                        {
 
-                                                    </tr>
+                                                            ?>
+
+                                                            <tr>
+                                                                <td>#</td>
+                                                                <td><?php echo($allergy->allergy); ?></td>
+
+                                                            </tr>
+                                                        <?php
+
+                                                        }//end of foreach
+                                                    }//end of for
+
+                                                    else{
+                                                        echo("<tr id='allergy_holder' ><td>No allergies found</td></tr>");
+                                                    }
+                                                    ?>
+
 
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input class="form-control" placeholder="Add allergies">
+                                            <input id="allergy" class="form-control" placeholder="Add allergies">
                                             </br>
-                                            <button type="button" class="btn btn-primary  pull-right">Add allergy</button>
+                                            <button type="button" onclick="add_allergy()" class="btn btn-primary  pull-right">Add allergy</button>
                                             <!-- /.table-responsive -->
 
                                         </div>
@@ -108,24 +129,38 @@
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>malaria</td>
+                                                    <tbody id="diagnosis_body">
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>TB</td>
+                                                    <?php if(isset($diagnosis) && $diagnosis >0)
+                                                    {
+                                                        foreach($diagnosis as $diag)
+                                                        {
 
-                                                    </tr>
+                                                            ?>
+
+                                                            <tr>
+                                                                <td>#</td>
+                                                                <td><?php echo($diag->diagnosis); ?></td>
+
+                                                            </tr>
+                                                        <?php
+
+                                                        }//end of foreach
+                                                    }//end of for
+
+                                                    else{
+                                                        echo("<tr><td>No diagnosis entered</td></tr>");
+                                                    }
+                                                    ?>
+
+
 
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input class="form-control" placeholder="Enter diagnosis here">
+                                            <input id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">
                                             </br>
-                                            <button type="button" class="btn btn-primary  pull-right">Add diagnosis</button>
+                                            <button type="button" onclick="add_diagnosis()" class="btn btn-primary  pull-right">Add diagnosis</button>
                                             <!-- /.table-responsive -->
                                         </div>
 
@@ -142,27 +177,39 @@
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>metazone</td>
+                                                    <tbody id="prescription_body">
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>ACTM</td>
+                                                    <?php if(isset($prescription) && $prescription >0)
+                                                    {
+                                                        foreach($prescription as $presc)
+                                                        {
 
-                                                    </tr>
+                                                            ?>
+
+                                                            <tr>
+                                                                <td>#</td>
+                                                                <td><?php echo($presc->prescription); ?></td>
+
+                                                            </tr>
+                                                        <?php
+
+                                                        }//end of foreach
+                                                    }//end of for
+
+                                                    else{
+                                                        echo("<tr><td>No prescription entered</td></tr>");
+                                                    }
+                                                    ?>
 
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input class="form-control" placeholder="Enter prescription here">
+                                            <input id="prescription" class="form-control" placeholder="Enter prescription here">
                                             </br>
-                                            <button type="button" class="btn btn-primary  pull-right">Add prescription</button>
+                                            <button type="button" onclick="add_prescription()" class="btn btn-primary  pull-right">Add prescription</button>
                                             <!-- /.table-responsive -->
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-lg pull-right">Send to accounts</button>
+                                       <a href="<?php echo(base_url()); ?>doctor/send_to_accounts"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to accounts</button></a>
                                     </div>
                                 </div>
 
@@ -178,22 +225,47 @@
                                                 <th>#</th>
                                                 <th>Lab test</th>
                                                 <th>Result</th>
-                                                <th>Time</th>
+
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Malaria</td>
-                                                <td><a href="#" >View results</a></td>
-                                                <td>10:21 am</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>TB</td>
-                                                <td><a href="#" >Results not in</a></td>
-                                                <td>10:21 am</td>
-                                            </tr>
+                                            <tbody id="lab_test_body">
+
+
+
+                                            <?php if(isset($lab_tests) && $lab_tests >0)
+                                            {
+                                                foreach($lab_tests as $lab_test)
+                                                {
+
+                                                    ?>
+
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td><?php echo($lab_test->test_done); ?></td>
+                                                        <td> <?php if(isset($lab_test->test_result)){
+                                                                ?>
+
+                                                                <a href="#" >View results</a>
+                                                            <?php
+                                                            }else{
+                                                                ?>
+
+                                                        <td><a href="#" >Results not in</a></td>
+                                                            <?php
+                                                            } ?>  </td>
+
+
+                                                    </tr>
+                                                <?php
+
+                                                }//end of foreach
+                                            }//end of for
+
+                                            else{
+                                                echo("<tr><td>No Lab tests present</td></tr>");
+                                            }
+                                            ?>
+
 
                                             </tbody>
                                         </table>
@@ -202,13 +274,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                        <input class="form-control" placeholder="Enter lab test here">
+                                        <input id="test_done" class="form-control" placeholder="Enter lab test here">
                                         </br>
-                                        <button type="button" class="btn btn-primary  pull-right">Add lab test</button>
+                                        <button type="button" onclick="add_lab_test()" class="btn btn-primary  pull-right">Add lab test</button>
                                             </div>
                                     </div>
                                     <!-- /.table-responsive -->
-                                    <button type="button" class="btn btn-primary btn-lg pull-right">Send to Lab</button>
+                                   <a href="<?php echo(base_url()); ?>doctor/send_to_lab"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to Lab</button></a>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="lab_results">
