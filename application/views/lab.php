@@ -11,8 +11,10 @@
 <div class="panel panel-default">
 <div class="panel-heading">
 
-    <label for="card_no" >Card Number: </label>
-    <p id="card_no"></p>
+    <strong>Patient ID:</strong> <?php echo($patient[0]->patient_id);?>
+    &nbsp; &nbsp; <strong>Name:</strong> <?php echo($patient[0]->name);?>
+    &nbsp; &nbsp; <strong>DoB:</strong> <?php echo($patient[0]->dob);?>
+    &nbsp; &nbsp; <strong>Sex:</strong> <?php echo($patient[0]->sex);?>
 </div>
 <!-- /.panel-heading -->
 <div class="panel-body">
@@ -23,8 +25,8 @@
     </li>
     <!--<li><a href="#lab_results" data-toggle="tab">Lab tests results</a>
     </li>-->
-    <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
-    </li>
+   <!-- <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
+    </li>-->
 
 </ul>
 
@@ -32,7 +34,6 @@
 <div class="tab-content">
 
 <div class="tab-pane fade in active" id="lab_tests">
-    <h4>Lab</h4>
 
     <div class="panel-body">
         <div class="table-responsive">
@@ -42,22 +43,47 @@
                     <th>#</th>
                     <th>Lab test</th>
                     <th>Result</th>
-                    <th>Time</th>
+
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Malaria</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>TB</td>
-                    <td><a href="#" >Enter results</a></td>
-                    <td>10:21 am</td>
-                </tr>
+                <tbody id="lab_test_body">
+
+
+
+                <?php if(isset($lab_tests) && $lab_tests >0)
+                {
+                    foreach($lab_tests as $lab_test)
+                    {
+
+                        ?>
+
+                        <tr>
+                            <td>#</td>
+                            <td><?php echo($lab_test->test_done); ?></td>
+                            <td> <?php if(isset($lab_test->test_result)){
+                                    ?>
+
+                                    <a href="#" >View results</a>
+                                <?php
+                                }else{
+                                ?>
+
+                            <a href="#" >Results not in</a>
+                            <?php
+                            } ?>  </td>
+
+
+                        </tr>
+                    <?php
+
+                    }//end of foreach
+                }//end of for
+
+                else{
+                    echo("<tr><td>No Lab tests present</td></tr>");
+                }
+                ?>
+
 
                 </tbody>
             </table>
