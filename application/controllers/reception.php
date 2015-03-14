@@ -44,6 +44,7 @@ class Reception extends CI_Controller {
         //load reception model
         $this->load->model('reception_model');
         $this->reception_model->new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif);
+        $this->load->view('reception_home');
 
     }
 

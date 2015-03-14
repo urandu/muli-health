@@ -23,7 +23,7 @@ class Lab extends CI_Controller {
         $patient_id=$this->input->post("patient_id");
 
         $this->load->model('doctor_model');
-        $visit=$this->doctor_model->get_visit($patient_id);
+        $visit=$this->doctor_model->get_visit_lab($patient_id);
 
         if($visit)
         {
@@ -43,6 +43,24 @@ class Lab extends CI_Controller {
         }
 
         //echo($patient_id);
+    }
+
+    public function send_to_doctor($visit_id)
+    {
+
+        $this->load->model('doctor_model');
+        $this->doctor_model->go_to_doctor($visit_id);
+        $this->load->view('lab_home');
+
+    }
+
+    public function save_lab_result()
+    {
+        $test_result=$this->input->post('test_result');
+        $test_id=$this->input->post('test_id');
+        $staff_id=$this->session->userdata('user_id');
+        $this->load->model('doctor_model');
+        $this->doctor_model->save_lab_result($test_id,$test_result,$staff_id);
     }
 
 }

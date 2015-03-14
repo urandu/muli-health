@@ -44,6 +44,18 @@ class Doctor extends CI_Controller {
             $lab_tests=$this->doctor_model->get_lab_tests($visit[0]->visit_id);
             $data['lab_tests']=$lab_tests;
 
+            $drugs=$this->doctor_model->get_all_drugs();
+            $data['drugs']=$drugs;
+
+            $diseases=$this->doctor_model->get_all_diseases();
+            $data['diseases']=$diseases;
+
+            $allergy_names=$this->doctor_model->get_allergy_names();
+            $data['allergy_names']=$allergy_names;
+
+            $lab_test_names=$this->doctor_model->get_lab_test_names();
+            $data['lab_test_names']=$lab_test_names;
+
             $data['visit']=$visit;
             $data['visit_id']=$visit[0]->visit_id;
 
@@ -65,6 +77,7 @@ class Doctor extends CI_Controller {
 
         $this->load->model('doctor_model');
         $this->doctor_model->add_allergy($allergy,$patient_id,$visit_id);
+        echo $this->doctor_model->get_allergy_name($allergy);
 
     }
 
@@ -77,6 +90,7 @@ class Doctor extends CI_Controller {
         $staff_id=$this->session->userdata('user_id');
         $this->load->model('doctor_model');
         $this->doctor_model->add_prescription($prescription,$patient_id,$visit_id,$staff_id);
+        echo $this->doctor_model->get_drug_name($prescription);
 
     }
 
@@ -88,6 +102,7 @@ class Doctor extends CI_Controller {
         $staff_id=$this->session->userdata('user_id');
         $this->load->model('doctor_model');
         $this->doctor_model->add_diagnosis($diagnosis,$patient_id,$visit_id,$staff_id);
+        echo $this->doctor_model->get_disease_name($diagnosis);
 
     }
 
@@ -96,9 +111,10 @@ class Doctor extends CI_Controller {
         $test_done=$this->input->post('test_done');
         $patient_id=$this->input->post('patient_id');
         $visit_id=$this->input->post('visit_id');
-        $staff_id=$this->session->userdata('user_id');
+
         $this->load->model('doctor_model');
-        $this->doctor_model->add_test_done($test_done,$patient_id,$visit_id,$staff_id);
+        $this->doctor_model->add_test_done($test_done,$patient_id,$visit_id);
+        echo $this->doctor_model->get_lab_test_name($test_done);
 
     }
 
@@ -123,11 +139,13 @@ class Doctor extends CI_Controller {
 
     }
 
+
+
     public function send_to_accounts($visit_id)
     {
 
         $this->load->model('doctor_model');
-        $this->doctor_model->go_to_pharmacy($visit_id);
+        $this->doctor_model->go_to_accounts($visit_id);
         $this->load->view('doctor_home');
 
     }

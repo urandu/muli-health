@@ -54,10 +54,10 @@ function add_allergy()
     posting_comment.done(function (data)
     {
 
-        host=$('#allergy').val();
+       // host=$('#allergy').val();
 
 
-        stri=' <tr><td>#</td>  <td>'+host+'</td></tr>';
+        stri=' <tr><td>#</td>  <td>'+data+'</td></tr>';
         //alert(stri);
         $('#allergy_body').append(stri);
         $('#allergy').val(null);
@@ -84,10 +84,10 @@ function add_prescription()
     posting_comment.done(function (data)
     {
 
-        host=$('#prescription').val();
+       // host=$('#prescription').val();
 
 
-        stri=' <tr><td>#</td>  <td>'+host+'</td></tr>';
+        stri=' <tr><td>#</td>  <td>'+data+'</td></tr>';
         //alert(stri);
         $('#prescription_body').append(stri);
         $('#prescription').val(null);
@@ -114,10 +114,10 @@ function add_diagnosis()
     posting_comment.done(function (data)
     {
 
-        host=$('#diagnosis1').val();
+        //host=$('#diagnosis1').val();
 
 
-        stri=' <tr><td>#</td>  <td>'+host+'</td></tr>';
+        stri=' <tr><td>#</td>  <td>'+data+'</td></tr>';
         //alert(stri);
         $('#diagnosis_body').append(stri);
         $('#diagnosis1').val(null);
@@ -143,10 +143,10 @@ function add_lab_test()
     posting_comment.done(function (data)
     {
 
-        host=$('#test_done').val();
+        //host=$('#test_done').val();
 
 
-        stri=' <tr><td>#</td>  <td>'+host+'</td></tr>';
+        stri=' <tr><td>#</td>  <td>'+data+'</td></tr>';
         //alert(stri);
         $('#lab_test_body').append(stri);
         $('#test_done').val(null);
@@ -179,4 +179,34 @@ function add_medical_profile()
 
 
     });
+}
+
+
+
+function save_lab_result(test_id)
+{
+
+    url = "http://localhost/muli/lab/save_lab_result";
+
+
+
+    var posting_comment = $.post(url, { test_id:test_id,test_result: $('#result_input_'+test_id).val() });
+
+    posting_comment.error(function () {
+
+        alert("Error in saving test result please try again");
+
+    });
+
+    posting_comment.done(function (data)
+    {
+
+        //host=$('#save_medical_profile').val('saved');
+        alert('result successfully saved');
+
+
+
+    });
+
+
 }

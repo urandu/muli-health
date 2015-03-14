@@ -84,7 +84,7 @@
 
                                                             <tr>
                                                                 <td>#</td>
-                                                                <td><?php echo($allergy->allergy); ?></td>
+                                                                <td><?php get_allergy_name($allergy->allergy); ?></td>
 
                                                             </tr>
                                                         <?php
@@ -101,8 +101,30 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input id="allergy" class="form-control" placeholder="Add allergies">
+                                           <!-- <input id="allergy" class="form-control" placeholder="Add allergies">-->
                                             </br>
+
+
+
+                                            <div class="form-group">
+                                                <label>Select allergy</label>
+                                                <select id="allergy" class="form-control" placeholder="Enter diagnosis here">-->
+                                                    " class="form-control">
+                                                    <?php if(isset($allergy_names) && $allergy_names>0) {
+                                                        foreach($allergy_names as $allergy_name){
+                                                            ?>
+                                                            <option value="<?php echo($allergy_name->allergy_id); ?>"><?php echo($allergy_name->allergy_name); ?></option>
+                                                        <?php
+                                                        }
+                                                    } ?>
+
+
+                                                </select>
+                                            </div>
+
+
+
+
                                             <button type="button" onclick="add_allergy()" class="btn btn-primary  pull-right">Add allergy</button>
                                             <!-- /.table-responsive -->
 
@@ -140,7 +162,7 @@
 
                                                             <tr>
                                                                 <td>#</td>
-                                                                <td><?php echo($diag->diagnosis); ?></td>
+                                                                <td><?php get_disease_name($diag->diagnosis); ?></td>
 
                                                             </tr>
                                                         <?php
@@ -158,7 +180,26 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">
+                                           <!-- <input id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">-->
+
+
+                                            <div class="form-group">
+                                                <label>Select disease</label>
+                                                <select id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">-->
+                                                    " class="form-control">
+                                                    <?php if(isset($diseases) && $diseases>0) {
+                                                        foreach($diseases as $disease){
+                                                            ?>
+                                                            <option value="<?php echo($disease->disease_id); ?>"><?php echo($disease->disease_name); ?></option>
+                                                        <?php
+                                                        }
+                                                    } ?>
+
+
+                                                </select>
+                                            </div>
+
+
                                             </br>
                                             <button type="button" onclick="add_diagnosis()" class="btn btn-primary  pull-right">Add diagnosis</button>
                                             <!-- /.table-responsive -->
@@ -188,7 +229,7 @@
 
                                                             <tr>
                                                                 <td>#</td>
-                                                                <td><?php echo($presc->prescription); ?></td>
+                                                                <td><?php get_drug_name($presc->prescription); ?></td>
 
                                                             </tr>
                                                         <?php
@@ -204,12 +245,27 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <input id="prescription" class="form-control" placeholder="Enter prescription here">
+                                            <!--<input id="prescription" class="form-control" placeholder="Enter prescription here">-->
                                             </br>
+
+                                            <div class="form-group">
+                                                <label>Select drug</label>
+                                                <select id="prescription" class="form-control">
+                                                    <?php if(isset($drugs) && $drugs>0) {
+                                                        foreach($drugs as $drug){
+                                                        ?>
+                                                        <option value="<?php echo($drug->drug_id); ?>"><?php echo($drug->drug_name); ?></option>
+                                                    <?php
+                                                    }
+                                                    } ?>
+
+
+                                                </select>
+                                            </div>
                                             <button type="button" onclick="add_prescription()" class="btn btn-primary  pull-right">Add prescription</button>
                                             <!-- /.table-responsive -->
                                         </div>
-                                       <a href="<?php echo(base_url()); ?>doctor/send_to_accounts"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to accounts</button></a>
+                                       <a href="<?php echo(base_url()); ?>doctor/send_to_accounts/<?php echo($visit_id); ?>"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to accounts</button></a>
                                     </div>
                                 </div>
 
@@ -241,18 +297,45 @@
 
                                                     <tr>
                                                         <td>#</td>
-                                                        <td><?php echo($lab_test->test_done); ?></td>
-                                                        <td> <?php if(isset($lab_test->test_result)){
-                                                                ?>
+                                                        <td><?php get_lab_test_name($lab_test->test_done); ?></td>
+                                                        <td> <a href="#" data-toggle="modal" data-target="#results_<?php echo($lab_test->test_id);?>" >Results</a>
 
-                                                                <a href="#" >View results</a>
-                                                            <?php
-                                                            }else{
-                                                                ?>
 
-                                                        <td><a href="#" >Results not in</a></td>
-                                                            <?php
-                                                            } ?>  </td>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="results_<?php echo($lab_test->test_id);  ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <h4 class="modal-title" id="myModalLabel"><?php echo($lab_test->test_done." (".$patient[0]->name.")");  ?></h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <p>
+                                                                                <?php if(isset($lab_test->test_result)) {
+                                                                                    echo($lab_test->test_result);
+                                                                                }else{
+                                                                                    ?>
+                                                                                Results Not Entered.
+                                                                                <?php
+                                                                                }
+
+
+                                                                                ?>
+                                                                            </p>
+
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            <!--<button type="button" class="btn btn-primary">Save</button>-->
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- /.modal-content -->
+                                                                </div>
+                                                                <!-- /.modal-dialog -->
+                                                            </div>
+                                                            <!-- /.modal --> </td>
 
 
                                                     </tr>
@@ -274,13 +357,33 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                        <input id="test_done" class="form-control" placeholder="Enter lab test here">
+                                        <!--<input id="test_done" class="form-control" placeholder="Enter lab test here">-->
                                         </br>
+
+
+                                            <div class="form-group">
+                                                <label>Select test</label>
+                                                <select id="test_done" class="form-control" placeholder="Enter diagnosis here">-->
+                                                    " class="form-control">
+                                                    <?php if(isset($lab_test_names) && $lab_test_names>0) {
+                                                        foreach($lab_test_names as $lab_test_name){
+                                                            ?>
+                                                            <option value="<?php echo($lab_test_name->test_id); ?>"><?php echo($lab_test_name->test_name); ?></option>
+                                                        <?php
+                                                        }
+                                                    } ?>
+
+
+                                                </select>
+                                            </div>
+
+
+
                                         <button type="button" onclick="add_lab_test()" class="btn btn-primary  pull-right">Add lab test</button>
                                             </div>
                                     </div>
                                     <!-- /.table-responsive -->
-                                   <a href="<?php echo(base_url()); ?>doctor/send_to_lab"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to Lab</button></a>
+                                   <a href="<?php echo(base_url()); ?>doctor/send_to_lab/<?php echo($visit_id); ?>"> <button type="button" class="btn btn-primary btn-lg pull-right">Send to Lab</button></a>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="lab_results">

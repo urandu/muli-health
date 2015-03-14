@@ -44,16 +44,16 @@
                                             <td><?php echo($patient[0]->patient_id); ?></td>
                                             <td><?php echo($patient[0]->sex); ?></td>
                                             <td><?php echo($patient[0]->dob); ?></td>
-                                            <?php if(isset($visit_status)){
-                                                ?>
+                                           <!-- <?php /*if(isset($visit_status)){
+                                                */?>
                                                 <td>Visit Active.</td>
-                                            <?php
-                                            } else{
-                                                ?>
+                                            --><?php
+/*                                            } else{
+                                                */?>
 
                                                 <td><a href="<?php echo(base_url()); ?>reception/start_visit/<?php echo($patient[0]->patient_id); ?>" ><button class="btn-primary" >Send to Doctor</button></a></td>
-                                            <?php
-                                            } ?>
+                                           <!-- --><?php
+/*                                            } */?>
 
                                         </tr>
 

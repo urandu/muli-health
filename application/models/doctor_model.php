@@ -20,7 +20,20 @@ class Doctor_model extends CI_Model
 
     }
 
+    function get_visit_lab($patient_id)
+    {
 
+        $this->db->where('patient_id',$patient_id);
+        $this->db->where('current_stage',2);
+        $this->db->where('visit_status',1);
+        $query=$this->db->get('visits');
+        if($query->num_rows>0) {
+            return $query->result();
+        }else{
+            return false;
+        }
+
+    }
 
     function get_medical_profile($visit_id)
     {
@@ -124,13 +137,12 @@ class Doctor_model extends CI_Model
         $this->db->insert('diagnosis',$data);
     }
 
-    function add_test_done($test_done,$patient_id,$visit_id,$staff_id)
+    function add_test_done($test_done,$patient_id,$visit_id)
     {
         $data=array(
             'test_done'=>$test_done,
             'patient_id'=>$patient_id,
-            'visit_id'=>$visit_id,
-            'staff_id'=>$staff_id
+            'visit_id'=>$visit_id
         );
         $this->db->insert('lab_tests',$data);
     }
@@ -153,11 +165,87 @@ class Doctor_model extends CI_Model
         $query=$this->db->query("UPDATE visits SET current_stage = 2 WHERE visit_id = ".$visit_id);
     }
 
+
+    function go_to_doctor($visit_id)
+    {
+        $query=$this->db->query("UPDATE visits SET current_stage = 1 WHERE visit_id = ".$visit_id);
+    }
+
     function go_to_accounts($visit_id)
     {
         $query=$this->db->query("UPDATE visits SET current_stage = 4 WHERE visit_id = ".$visit_id);
     }
 
+
+    function save_lab_result($test_id,$test_result,$staff_id)
+    {
+
+
+        $data = array(
+            'test_result' => $test_result,
+            'staff_id'=>$staff_id
+
+        );
+
+        $this->db->where('test_id', $test_id);
+        $this->db->update('lab_tests', $data);
+
+    }
+
+    function get_all_drugs()
+    {
+        return $this->db->get('drugs')->result();
+    }
+
+    function get_drug_name($drug_id)
+    {
+        $this->db->where(array('drug_id'=>$drug_id));
+        $result=$this->db->get('drugs');
+        $result=$result->result()[0]->drug_name;
+        return $result;
+    }
+
+    function get_all_diseases()
+    {
+        return $this->db->get('diseases')->result();
+    }
+
+    function get_disease_name($disease_id)
+    {
+        $this->db->where(array('disease_id'=>$disease_id));
+        $result=$this->db->get('diseases');
+        $result=$result->result()[0]->disease_name;
+        return $result;
+    }
+
+
+    function get_allergy_names()
+    {
+        return $this->db->get('allergy_names')->result();
+    }
+
+    function get_allergy_name($allergy_id)
+    {
+        $this->db->where(array('allergy_id'=>$allergy_id));
+        $result=$this->db->get('allergy_names');
+        $result=$result->result()[0]->allergy_name;
+        return $result;
+    }
+
+
+
+    function get_lab_test_names()
+    {
+        return $this->db->get('lab_test_names')->result();
+    }
+
+    function get_lab_test_name($test_id)
+    {
+        $this->db->where(array('test_id'=>$test_id));
+        $result=$this->db->get('lab_test_names');
+        $result=$result->result()[0]->test_name;
+        return $result;
+    }
 
 }
 
