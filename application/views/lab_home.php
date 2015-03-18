@@ -42,4 +42,25 @@
     </div>
     <!-- /#wrapper -->
 
+
+
+
+
+    <script>
+
+        setInterval(function(){
+
+            $.get('http://localhost/airport/read.txt', function(data) {
+                // alert(data)
+                if(data!=''){
+                    window.location.replace('http://localhost/muli/lab/get_patient/'+data);
+                }
+            }, 'text');
+        },1000);
+
+
+
+
+    </script>
+
 <?php include_once('footer.php') ?>

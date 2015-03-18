@@ -15,10 +15,10 @@ class Doctor extends CI_Controller {
 
     }
 
-    public function get_patient()
+    public function get_patient($patient_id)
     {
 
-        $patient_id=$this->input->post("patient_id");
+       // $patient_id=$this->input->post("patient_id");
 
         $this->load->model('doctor_model');
         $visit=$this->doctor_model->get_visit($patient_id);
