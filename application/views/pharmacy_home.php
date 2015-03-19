@@ -43,21 +43,21 @@
     </div>
     <!-- /#wrapper -->
 
-    <script type="application/javascriptg">
+<script>
 
-        setInterval(function(){
+setInterval(function(){
 
-            $.get('http://localhost/airport/read.txt', function(data) {
-                // alert(data)
-                if(data!=''){
-                    window.location.replace('http://localhost/muli/pharmacy/get_patient/'+data);
-                }
-            }, 'text');
-        },1000);
-
-
+    $.get('http://localhost/airport/read.txt', function(data) {
+       // alert(data)
+        if(data!=''){
+            window.location.replace('http://localhost/muli/pharmacy/get_patient/'+data);
+        }
+    }, 'text');
+},1000);
 
 
-    </script>
+
+
+</script>
 
 <?php include_once('footer.php') ?>
