@@ -2,21 +2,7 @@
 
 class Finance extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
+
     public function index()
     {
         if(!is_logged_in())
@@ -24,8 +10,56 @@ class Finance extends CI_Controller {
             $this->load->view('login');
         }else
         {
-            $this->load->view('finance');
+            $this->load->view('finance_home');
         }
+
+    }
+
+    public function get_patient($patient_id)
+    {
+
+        // $patient_id=$this->input->post("patient_id");
+
+        $this->load->model('doctor_model');
+        $visit=$this->doctor_model->get_visit($patient_id);
+
+        if($visit)
+        {
+            $this->load->model('reception_model');
+            $patient=$this->reception_model->get_patient($patient_id);
+            $data['patient']=$patient;
+
+            $allergies=$this->doctor_model->get_allergies($patient_id);
+            $data['allergies']=$allergies;
+
+
+            $prescription=$this->doctor_model->get_prescription($visit[0]->visit_id);
+            $data['prescription']=$prescription;
+
+
+
+
+            $data['visit']=$visit;
+            $data['visit_id']=$visit[0]->visit_id;
+
+            $this->load->view('finance',$data);
+        }else{
+            $this->load->view('finance_patient');
+        }
+
+        //echo($patient_id);
+    }
+
+
+
+
+
+    public function go_to_pharmacy($visit_id)
+    {
+
+        $this->load->model('doctor_model');
+        $this->doctor_model->go_to_pharmacy($visit_id);
+        $this->load->view('finance_home');
 
     }
 

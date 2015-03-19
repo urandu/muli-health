@@ -177,6 +177,11 @@ class Doctor_model extends CI_Model
     }
 
 
+    function go_to_pharmacy($visit_id)
+    {
+        $query=$this->db->query("UPDATE visits SET current_stage = 3 WHERE visit_id = ".$visit_id);
+    }
+
     function save_lab_result($test_id,$test_result,$staff_id)
     {
 
