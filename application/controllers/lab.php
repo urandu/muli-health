@@ -1,8 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Lab extends CI_Controller {
-
-
+class Lab extends  Im_Controller
+{
+    private $data;
+    protected $before_filter = array(
+        'action' => 'is_lab_attendant',
+        'except' => array()
+    );
     public function index()
     {
         if(!is_logged_in())
@@ -17,10 +21,11 @@ class Lab extends CI_Controller {
 
 
 
-    public function get_patient($patient_id)
+    public function get_patient()
     {
 
 
+        $patient_id=$this->input->post('patient_id');
 
         $this->load->model('doctor_model');
         $visit=$this->doctor_model->get_visit_lab($patient_id);

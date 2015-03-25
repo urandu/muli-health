@@ -43,7 +43,18 @@
                                                 <input class="form-control" name="patient_id" id="patient_id" placeholder="Enter phone number">
                                             </div>
 
-											<div class="form-group">
+
+                                            <div class="form-group">
+                                                <label>ID number</label>
+                                                <input class="form-control" name="id_num" id="id_num" placeholder="Enter ID number">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Sir name</label>
+                                                <input class="form-control" name="sir_name" id="sir_name" placeholder="Enter sir name">
+                                            </div>
+
+                                            <div class="form-group">
 												<label>Name</label>
 												<input class="form-control" name="name" id="name" placeholder="Enter patient name">
 											</div>

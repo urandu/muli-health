@@ -1,8 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pharmacy extends CI_Controller {
-
-
+class Pharmacy extends  Im_Controller
+{
+    private $data;
+    protected $before_filter = array(
+        'action' => 'is_pharmacist',
+        'except' => array()
+    );
     public function index()
     {
         if(!is_logged_in())
@@ -15,13 +19,13 @@ class Pharmacy extends CI_Controller {
 
     }
 
-    public function get_patient($patient_id)
+    public function get_patient()
     {
 
-        // $patient_id=$this->input->post("patient_id");
+        $patient_id=$this->input->post("patient_id");
 
         $this->load->model('doctor_model');
-        $visit=$this->doctor_model->get_visit($patient_id);
+        $visit=$this->doctor_model->get_visit_pharmacy($patient_id);
 
         if($visit)
         {

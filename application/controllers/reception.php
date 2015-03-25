@@ -1,22 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reception extends CI_Controller {
+class Reception extends  Im_Controller
+{
+    private $data;
+    protected $before_filter = array(
+        'action' => 'is_receptionist',
+        'except' => array()
+    );
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
     public function index()
     {
         if(!is_logged_in())
@@ -40,20 +31,23 @@ class Reception extends CI_Controller {
         $address=$this->input->post('address');
         $insured=$this->input->post('insured');
         $nhif=$this->input->post('nhif');
+        $sir_name=$this->input->post('sir_name');
+        $id_num=$this->input->post('id_num');
+
 
         //load reception model
         $this->load->model('reception_model');
-        $this->reception_model->new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif);
+        $this->reception_model->new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif,$sir_name,$id_num);
         $this->load->view('reception_home');
 
     }
 
 
 
-    public function get_patient($patient_id)
+    public function get_patient()
     {
 
-        //$patient_id=$this->input->post("patient_id");
+        $patient_id=$this->input->post("patient_id");
         if(!$patient_id)
         {
             $this->load->view('reception_home');

@@ -307,7 +307,7 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                            <h4 class="modal-title" id="myModalLabel"><?php echo($lab_test->test_done." (".$patient[0]->name.")");  ?></h4>
+                                                                            <h4 class="modal-title" id="myModalLabel"><?php get_lab_test_name($lab_test->test_done." (".$patient[0]->name.")");  ?></h4>
                                                                         </div>
                                                                         <div class="modal-body">
 

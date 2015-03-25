@@ -9,12 +9,18 @@
 <!-- /.col-lg-12 -->
 <div class="col-lg-12">
 <div class="panel panel-default">
-<div class="panel-heading">
 
-    <label for="card_no" >Card Number: </label>
-    <p id="card_no"></p>
-</div>
-<!-- /.panel-heading -->
+
+    <div class="panel-heading">
+
+        <strong>Patient ID:</strong> <?php echo($patient[0]->patient_id);?>
+        &nbsp; &nbsp; <strong>Name:</strong> <?php echo($patient[0]->name);?>
+        &nbsp; &nbsp; <strong>DoB:</strong> <?php echo($patient[0]->dob);?>
+        &nbsp; &nbsp; <strong>Sex:</strong> <?php echo($patient[0]->sex);?>
+    </div>
+
+    <input type="hidden" id="patient_id" value="<?php echo($patient[0]->patient_id);?>">
+    <!-- /.panel-heading -->
 <div class="panel-body">
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -40,41 +46,103 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Drug</th>
+                    <th>Prescription</th>
                     <th>Amount</th>
 
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>actm</td>
-                    <td><strong>ksh.200</strong></td>
+                <tbody id="prescription_body">
 
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>panadol</td>
-                    <td><strong>ksh.50</strong></td>
+                <?php
 
-                </tr>
+                $total_cost=0;
 
+                if(isset($prescription) && $prescription >0)
+                {
+
+                    foreach($prescription as $presc)
+                    {
+
+                        $total_cost=$total_cost+ (int)get_drug_price($presc->prescription);
+                        ?>
+
+                        <tr>
+                            <td>#</td>
+                            <td><?php get_drug_name($presc->prescription); ?></td>
+                            <td><?php echo(get_drug_price($presc->prescription)); ?></td>
+
+                        </tr>
+                    <?php
+
+                    }//end of foreach
+                }//end of for
+
+                else{
+                    echo("<tr><td>No prescription entered</td></tr>");
+                }
+                ?>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>.</th>
-                    <th>Total</th>
-                    <th>ksh.250</th>
+                    <th>#</th>
+                    <th>Lab test</th>
+                    <th>Amount</th>
 
                 </tr>
+                </thead>
+                <tbody id="lab_test_body">
+
+
+
+                <?php if(isset($lab_tests) && $lab_tests >0)
+                {
+                    foreach($lab_tests as $lab_test)
+                    {
+
+                        $total_cost=$total_cost + get_lab_test_price($lab_test->test_done);
+                        ?>
+
+                        <tr>
+                            <td>#</td>
+                            <td><?php get_lab_test_name($lab_test->test_done); ?></td>
+                            <td><?php echo(get_lab_test_price($lab_test->test_done)); ?></td>
+
+
+                        </tr>
+                    <?php
+
+                    }//end of foreach
+                }//end of for
+
+                else{
+                    echo("<tr><td>No Lab tests present</td></tr>");
+                }
+                ?>
+
 
                 </tbody>
             </table>
 
 
         </div>
-
         <!-- /.table-responsive -->
-        <button type="button" class="btn btn-primary btn-lg pull-right">Accept payment and send to pharmacy</button>
+        <?php echo("<h2>Total: ".$total_cost."</h2>"); ?>
+<form method="post" action="<?php echo(base_url()); ?>finance/accept_payment">
+
+    <input type="hidden" name="visit_id" value="<?php echo($visit_id); ?>">
+    <input type="hidden" name="amount_paid" value="<?php echo($total_cost); ?>">
+
+    <button type="submit" class="btn btn-primary btn-lg pull-right">Accept payment and send to pharmacy</button>
+</form>
+
     </div>
 </div>
 

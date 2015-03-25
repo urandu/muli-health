@@ -1,24 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Doctor extends CI_Controller {
-
-
+class Doctor extends  Im_Controller
+{
+    private $data;
+    protected $before_filter = array(
+        'action' => 'is_doctor',
+        'except' => array()
+    );
     public function index()
     {
-        if(!is_logged_in())
-        {
-            $this->load->view('login');
-        }else
-        {
+
             $this->load->view('doctor_home');
-        }
+
 
     }
 
-    public function get_patient($patient_id)
+
+    public function get_patient()
     {
 
-       // $patient_id=$this->input->post("patient_id");
+        $patient_id=$this->input->post("patient_id");
 
         $this->load->model('doctor_model');
         $visit=$this->doctor_model->get_visit($patient_id);

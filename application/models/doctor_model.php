@@ -35,6 +35,52 @@ class Doctor_model extends CI_Model
 
     }
 
+
+    function get_visit_finance($patient_id)
+    {
+
+        $this->db->where('patient_id',$patient_id);
+        $this->db->where('current_stage',4);
+        $this->db->where('visit_status',1);
+        $query=$this->db->get('visits');
+        if($query->num_rows>0) {
+            return $query->result();
+        }else{
+            return false;
+        }
+
+    }
+
+
+
+
+    function get_visit_pharmacy($patient_id)
+    {
+
+        $this->db->where('patient_id',$patient_id);
+        $this->db->where('current_stage',3);
+        $this->db->where('visit_status',1);
+        $query=$this->db->get('visits');
+        if($query->num_rows>0) {
+            return $query->result();
+        }else{
+            return false;
+        }
+
+    }
+
+
+    function accept_payment($visit_id,$staff_id,$amount_paid)
+    {
+        $data=array(
+            'visit_id'=>$visit_id,
+            'staff_id'=>$staff_id,
+            'amount_paid'=>$amount_paid
+        );
+
+        $this->db->insert('payments',$data);
+    }
+
     function get_medical_profile($visit_id)
     {
 
@@ -165,6 +211,11 @@ class Doctor_model extends CI_Model
         $query=$this->db->query("UPDATE visits SET current_stage = 2 WHERE visit_id = ".$visit_id);
     }
 
+    function go_to_pharmacy($visit_id)
+    {
+        $query=$this->db->query("UPDATE visits SET current_stage = 3 WHERE visit_id = ".$visit_id);
+    }
+
 
     function go_to_doctor($visit_id)
     {
@@ -205,6 +256,18 @@ class Doctor_model extends CI_Model
         return $result;
     }
 
+
+
+    function get_drug_price($drug_id)
+    {
+        $this->db->where(array('drug_id'=>$drug_id));
+        $result=$this->db->get('drugs');
+        $result=$result->result()[0]->drug_price;
+        return $result;
+    }
+
+
+
     function get_all_diseases()
     {
         return $this->db->get('diseases')->result();
@@ -244,6 +307,15 @@ class Doctor_model extends CI_Model
         $this->db->where(array('test_id'=>$test_id));
         $result=$this->db->get('lab_test_names');
         $result=$result->result()[0]->test_name;
+        return $result;
+    }
+
+
+    function get_lab_test_price($test_id)
+    {
+        $this->db->where(array('test_id'=>$test_id));
+        $result=$this->db->get('lab_test_names');
+        $result=$result->result()[0]->test_cost;
         return $result;
     }
 

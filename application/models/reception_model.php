@@ -4,7 +4,7 @@ class Reception_model extends CI_Model
 {
 
 
-    function new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif)
+    function new_patient($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif,$sir_name,$id_num)
     {
         $details=array(
             'patient_id'=>$patient_id,
@@ -15,7 +15,9 @@ class Reception_model extends CI_Model
             'email'=>$email,
             'address'=>$address,
             'insured'=>$insured,
-            'nhif'=>$nhif
+            'nhif'=>$nhif,
+            'sir_name'=>$sir_name,
+            'id_num'=>$id_num
         );
 
         return $this->db->insert('patient_profile',$details);

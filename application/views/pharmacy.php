@@ -9,11 +9,15 @@
 <!-- /.col-lg-12 -->
 <div class="col-lg-12">
 <div class="panel panel-default">
-<div class="panel-heading">
+    <div class="panel-heading">
 
-    <label for="card_no" >Card Number: </label>
-    <p id="card_no"></p>
-</div>
+        <strong>Patient ID:</strong> <?php echo($patient[0]->patient_id);?>
+        &nbsp; &nbsp; <strong>Name:</strong> <?php echo($patient[0]->name);?>
+        &nbsp; &nbsp; <strong>DoB:</strong> <?php echo($patient[0]->dob);?>
+        &nbsp; &nbsp; <strong>Sex:</strong> <?php echo($patient[0]->sex);?>
+    </div>
+
+    <input type="hidden" id="patient_id" value="<?php echo($patient[0]->patient_id);?>">
 <!-- /.panel-heading -->
 <div class="panel-body">
 <!-- Nav tabs -->
@@ -23,9 +27,9 @@
     </li>
     <!--<li><a href="#lab_results" data-toggle="tab">Lab tests results</a>
     </li>-->
-    <li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
+    <!--<li><a href="#patient_profile" data-toggle="tab">Patient profile</a>
     </li>
-
+-->
 </ul>
 
 <!-- Tab panes -->
@@ -40,33 +44,39 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Drug</th>
-                    <th>payment</th>
-                    <th>dosage</th>
+                    <th>Prescription</th>
+
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>actm</td>
-                    <td><strong>Paid</strong></td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>panadol</td>
-                    <td><strong>Paid</strong></td>
-                    <td><input type="text"></td>
-                </tr>
+                <tbody id="prescription_body">
+
+                <?php if(isset($prescription) && $prescription >0)
+                {
+                    foreach($prescription as $presc)
+                    {
+
+                        ?>
+
+                        <tr>
+                            <td>#</td>
+                            <td><?php get_drug_name($presc->prescription); ?></td>
+
+                        </tr>
+                    <?php
+
+                    }//end of foreach
+                }//end of for
+
+                else{
+                    echo("<tr><td>No prescription entered</td></tr>");
+                }
+                ?>
 
                 </tbody>
             </table>
-
-
         </div>
-
         <!-- /.table-responsive -->
-        <button type="button" class="btn btn-primary btn-lg pull-right">Issue</button>
+        <a href="<?php echo(base_url()); ?>pharmacy/issue/<?php echo($visit_id); ?>"><button type="button" class="btn btn-primary btn-lg pull-right">Issue</button></a>
     </div>
 </div>
 

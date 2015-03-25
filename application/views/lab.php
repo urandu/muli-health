@@ -59,7 +59,7 @@
 
                                                         <tr>
                                                             <td>#</td>
-                                                            <td><?php echo($lab_test->test_done); ?></td>
+                                                            <td><?php get_lab_test_name($lab_test->test_done); ?></td>
                                                             <td>
 
                                                                 <a href="#" data-toggle="modal" data-target="#results_<?php echo($lab_test->test_id);?>" >Results</a>
