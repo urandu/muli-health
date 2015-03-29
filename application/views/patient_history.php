@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Patient is in active visit</h1>
+                    <h1 class="page-header">Patient History</h1>
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-12">
@@ -23,7 +23,18 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
 
-                            <h3>Sorry patient is not in in your queue please refer patient to reception.</h3>
+                            <?php
+
+                            if(isset($history) && $history>0 )
+                            {
+                                foreach($history as $hist)
+                                {
+                                    echo('Date of visit :'.$hist->start_date);
+                                    echo('<br><br>');
+                                }
+                            }
+
+                            ?>
 
 
                         </div>

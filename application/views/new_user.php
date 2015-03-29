@@ -291,7 +291,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Admin</h1>
+                        <h1 class="page-header">New staff</h1>
                     </div>
 
 
@@ -300,7 +300,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
 
-                                New User
+
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -317,7 +317,7 @@
                                 ?>
 
 
-                                <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>user/new_s">
+                                <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>admin_home/new_s">
                                     <div></div>
                                     <div class="control-group ">
                                         <label  for="name">Names</label>

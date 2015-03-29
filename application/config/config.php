@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/muli';
+$config['base_url']	= 'http://localhost/muli/';
 
 /*
 |--------------------------------------------------------------------------

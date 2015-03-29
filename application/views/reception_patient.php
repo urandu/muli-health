@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">View patient</h1>
+                        <h1 class="page-header">Patient is in active visit</h1>
                     </div>
                     <!-- /.col-lg-12 -->
 					<div class="col-lg-12">
@@ -40,20 +40,37 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td><?php echo($patient[0]->name); ?></td>
+                                            <td><a href="<?php echo(base_url()); ?>patient/patient_history/<?php echo($patient[0]->patient_id); ?>" ><?php echo($patient[0]->name); ?></a></td>
                                             <td><?php echo($patient[0]->patient_id); ?></td>
                                             <td><?php echo($patient[0]->sex); ?></td>
                                             <td><?php echo($patient[0]->dob); ?></td>
-                                           <!-- <?php /*if(isset($visit_status)){
-                                                */?>
-                                                <td>Visit Active.</td>
-                                            --><?php
-/*                                            } else{
-                                                */?>
+                                            <?php if($visit_status){
+                                                ?>
+                                                <td>Visit Active.(<?php
+                                                     if($visit_status->current_stage==0)
+                                                     {
+                                                         echo('Reception');//should never happen
+                                                     }elseif($visit_status->current_stage==1)
+                                                     {
+                                                         echo('At Doctor');
+                                                     }elseif($visit_status->current_stage==2)
+                                                     {
+                                                         echo('At Lab');
+                                                     }elseif($visit_status->current_stage==3)
+                                                     {
+                                                         echo('At Pharmacy');
+                                                     }elseif($visit_status->current_stage==4)
+                                                     {
+                                                         echo('At Accounts');
+                                                     }
+                                                    ?>)</td>
+                                            <?php
+                                            } else{
+                                                ?>
 
                                                 <td><a href="<?php echo(base_url()); ?>reception/start_visit/<?php echo($patient[0]->patient_id); ?>" ><button class="btn-primary" >Send to Doctor</button></a></td>
-                                           <!-- --><?php
-/*                                            } */?>
+                                           <?php
+                                            } ?>
 
                                         </tr>
 

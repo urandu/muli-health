@@ -4,6 +4,12 @@ $(function() {
 
 });
 
+
+window.location.hash="no-back-button";
+window.location.hash="Again-No-back-button";
+window.onhashchange=function(){window.location.hash="no-back-button";}
+
+
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
@@ -209,4 +215,135 @@ function save_lab_result(test_id)
     });
 
 
+}
+
+
+
+
+function add_drug()
+{
+
+
+    url = "http://localhost/muli/admin_home/add_drug";
+
+
+
+    var posting_comment = $.post(url, { drug_name: $('#drug_name').val(),price:$('#drug_cost').val() });
+
+    posting_comment.error(function () {
+
+        alert("Error in saving drug please try again");
+
+    });
+
+    posting_comment.done(function (data)
+    {
+
+        // host=$('#prescription').val();
+
+
+        stri=' <tr>  <td>'+$('#drug_name').val()+'</td><td>'+$('#drug_cost').val()+'</td></tr>';
+        //alert(stri);
+        $('#drug_body').append(stri);
+        $('#drug_name').val(null);
+        $('#drug_cost').val(null);
+    });
+}
+
+
+
+
+function add_lab_test_name()
+{
+
+
+    url = "http://localhost/muli/admin_home/add_lab_test_name";
+
+
+
+    var posting_comment = $.post(url, { test_name: $('#test_name').val(),test_cost:$('#test_cost').val() });
+
+    posting_comment.error(function () {
+
+        alert("Error in saving lab test please try again");
+
+    });
+
+    posting_comment.done(function (data)
+    {
+
+        // host=$('#prescription').val();
+
+
+        stri=' <tr>  <td>'+$('#test_name').val()+'</td><td>'+$('#test_cost').val()+'</td></tr>';
+        //alert(stri);
+        $('#lab_test_name_body').append(stri);
+        $('#test_name').val(null);
+        $('#test_cost').val(null);
+    });
+}
+
+
+
+
+function add_disease()
+{
+
+
+    url = "http://localhost/muli/admin_home/add_disease";
+
+
+
+    var posting_comment = $.post(url, { disease_name: $('#test_name').val() });
+
+    posting_comment.error(function () {
+
+        alert("Error in saving disease test please try again");
+
+    });
+
+    posting_comment.done(function (data)
+    {
+
+        // host=$('#prescription').val();
+
+
+        stri=' <tr>  <td>'+$('#disease_name').val()+'</td></tr>';
+        //alert(stri);
+        $('#disease_body').append(stri);
+        $('#disease_name').val(null);
+
+    });
+}
+
+
+
+function add_allergy_name()
+{
+
+
+    url = "http://localhost/muli/admin_home/add_allergy_name";
+
+
+
+    var posting_comment = $.post(url, { allergy_name: $('#allergy_name').val() });
+
+    posting_comment.error(function () {
+
+        alert("Error in saving allergy name test please try again");
+
+    });
+
+    posting_comment.done(function (data)
+    {
+
+        // host=$('#prescription').val();
+
+
+        stri=' <tr>  <td>'+$('#allergy_name').val()+'</td></tr>';
+        //alert(stri);
+        $('#allergy_name_body').append(stri);
+        $('#allergy_name').val(null);
+
+    });
 }

@@ -60,6 +60,8 @@ class Doctor extends  Im_Controller
             $data['visit']=$visit;
             $data['visit_id']=$visit[0]->visit_id;
 
+
+
             $this->load->view('doctor',$data);
         }else{
             $this->load->view('doctor_patient');
@@ -69,6 +71,16 @@ class Doctor extends  Im_Controller
     }
 
 
+
+    function patient_history($patient_no)
+    {
+
+        $this->load->model('patient_model');
+        $history=$this->patient_model->get_patient_history($patient_no);
+        $data['history']=$history;
+        $this->load->view('patient_history',$data);
+
+    }
 
     public function add_allergy()
     {

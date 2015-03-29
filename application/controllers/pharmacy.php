@@ -127,6 +127,12 @@ class Pharmacy extends  Im_Controller
     }
 
 
+    public function issue($visit_id){
+
+        $this->load->model('doctor_model');
+        $this->doctor_model->end_visit($visit_id);
+        $this->load->view('pharmacy_home');
+    }
 
     public function send_to_accounts($visit_id)
     {

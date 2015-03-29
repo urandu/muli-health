@@ -47,7 +47,7 @@
                         <h3 class="panel-title">Please Sign In To Continue.</h3>
                     </div>
                     <div class="panel-body">
-                        <form method="post" action="<?php echo(base_url()); ?>user/validate" role="form">
+                        <form method="post" action="<?php echo(base_url()); ?>admin/validate" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" required placeholder="User name" name="user_name" type="text" autofocus>

@@ -52,6 +52,10 @@ class Doctor_model extends CI_Model
     }
 
 
+    function end_visit($visit_id)
+    {
+        $query=$this->db->query("UPDATE visits SET visit_status = 0 WHERE visit_id = ".$visit_id);
+    }
 
 
     function get_visit_pharmacy($patient_id)
@@ -317,6 +321,45 @@ class Doctor_model extends CI_Model
         $result=$this->db->get('lab_test_names');
         $result=$result->result()[0]->test_cost;
         return $result;
+    }
+
+    function add_drug($drug_name,$drug_price,$stock)
+    {
+        $data=array(
+            'drug_name'=>$drug_name,
+            'drug_price'=>$drug_price,
+            'stock'=>$stock
+        );
+
+        $this->db->insert('drugs',$data);
+    }
+
+    function add_lab_test_name($test_name,$test_cost)
+    {
+        $data=array(
+            'test_name'=>$test_name,
+            'test_cost'=>$test_cost
+        );
+
+        $this->db->insert('lab_test_names',$data);
+    }
+
+    function add_disease($disease_name)
+    {
+        $data=array(
+            'disease_name'=>$disease_name
+        );
+
+        $this->db->insert('diseases',$data);
+    }
+
+    function add_allergy_name($allergy_name)
+    {
+        $data=array(
+            'allergy_name'=>$allergy_name
+        );
+
+        $this->db->insert('allergy_names',$data);
     }
 
 }

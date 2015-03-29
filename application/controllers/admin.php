@@ -1,6 +1,6 @@
 <?php
 
-class User extends CI_Controller {
+class Admin extends CI_Controller {
 
     /**
     * Check if the user is logged in, if he's not, 
@@ -31,15 +31,21 @@ class User extends CI_Controller {
             {
                 redirect('finance');
             }
+            elseif($role==-1)
+            {
+                redirect('admin_home');
+            }
             else
             {
                 show_404();
             }
 
         }else{
-        	$this->load->view('login');
+        	$this->load->view('admin_login');
         }
 	}
+
+
 
     /**
     * encript the password 
@@ -100,6 +106,10 @@ class User extends CI_Controller {
             {
                 redirect('finance');
             }
+            elseif($role==-1)
+            {
+                redirect('admin');
+            }
             else
             {
                 show_404();
@@ -110,7 +120,7 @@ class User extends CI_Controller {
 		else // incorrect username or password
 		{
 			$data['message_error'] = TRUE;
-			$this->load->view('login', $data);
+			$this->load->view('admin_login', $data);
 		}
 	}
 
@@ -167,7 +177,7 @@ class User extends CI_Controller {
 
 
         if (!is_logged_in()) {
-            $this->load->view('login');
+            $this->load->view('admin_login');
         } else {
 
 
@@ -183,7 +193,10 @@ class User extends CI_Controller {
                 redirect('pharmacy');
             } elseif ($role == 4) {
                 redirect('finance');
-            } else {
+            } elseif($role==-1)
+            {
+                redirect('admin');
+            }else {
                 show_404();
             }
 

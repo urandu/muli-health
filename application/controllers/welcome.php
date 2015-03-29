@@ -25,7 +25,36 @@ class Welcome extends CI_Controller {
             $this->load->view('login');
         }else {
 
-            $this->load->view('login');
+
+           $role= $this->session->all_userdata()['role'];
+
+            if($role==0)
+            {
+                redirect('doctor');
+            }
+            elseif($role==1)
+            {
+                redirect('reception');
+            }
+            elseif($role==2)
+            {
+                redirect('lab');
+            }
+            elseif($role==3)
+            {
+                redirect('pharmacy');
+            }
+            elseif($role==4)
+            {
+                redirect('finance');
+            } elseif($role==-1)
+            {
+                redirect('admin');
+            }
+            else
+            {
+                show_404();
+            }
         }
 
 	}

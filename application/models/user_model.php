@@ -60,6 +60,43 @@ class User_model extends CI_Model
         }
     }
 
+    function edit_user($phone, $password, $email, $user_name,$user_id)
+    {
+        $this->db->where('user_name', $user_name);
+        $query = $this->db->get('users');
+
+        if ($password==1111) {
+
+
+            $new_user_insert_data = array(
+                'phone' => $phone,
+                'email' => $email,
+                'user_name' => $user_name
+            );
+
+
+        } else {
+
+            $new_user_insert_data = array(
+                'phone' => $phone,
+                'password' => md5($password),
+                'email' => $email,
+                'user_name' => $user_name
+            );
+            $this->db->where('user_id', $user_id);
+            $insert = $this->db->update('users', $$new_user_insert_data);
+
+            return $insert;
+        }
+    }
+
+
+    function get_user($user_id)
+    {
+        $this->db->where('user_id',$user_id);
+        $user=$this->db->get('users');
+        return $user->result();
+    }
 
 }
 

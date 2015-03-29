@@ -45,6 +45,28 @@ function _is_doctor()
 }
 
 
+
+function _is_admin()
+{
+    $CI = &get_instance ();
+    $user_data = $CI->session->all_userdata ();
+
+    if($user_data['role']==-1){
+
+        return true;
+
+    }else{
+
+
+        return false;
+
+    }
+
+}
+
+
+
+
 function _is_pharmacist()
 {
     $CI = &get_instance ();
@@ -138,4 +160,12 @@ function get_lab_test_price($test_id)
     $CI=get_instance();
     $CI->load->model('doctor_model');
      return $CI->doctor_model->get_lab_test_price($test_id);
+}
+
+function queue($stage)
+{
+    $CI=get_instance();
+    $CI->db->where('current_stage',$stage);
+    $number=$CI->db->get('visits');
+    return $number->num_rows;
 }

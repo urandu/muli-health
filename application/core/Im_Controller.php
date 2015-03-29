@@ -149,11 +149,27 @@ class Im_Controller extends CI_Controller {
 
 
 
+    public function is_logged_in()
+    {
+        if (!is_logged_in()  )
+        {
+            redirect('user/login');
+        }
+    }
+
     public function is_doctor()
     {
         if (!is_logged_in() || !_is_doctor() )
         {
             redirect('user/login');
+        }
+    }
+
+    public function is_admin()
+    {
+        if (!is_logged_in() || !_is_admin() )
+        {
+            redirect('admin');
         }
     }
 

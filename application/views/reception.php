@@ -13,7 +13,7 @@
 
 
 
-                            <label for="patient_profile_card_no" >Card Number: </label>
+                            <label for="patient_profile_card_no" >Card Number: <?php echo($patient_id); ?></label>
                             <p id="card_no"></p>
 
 
@@ -40,7 +40,7 @@
 
                                             <div class="form-group">
                                                 <label>patient_no</label>
-                                                <input class="form-control" name="patient_id" id="patient_id" placeholder="Enter phone number">
+                                                <input class="form-control" contenteditable="false"  name="patient_id" id="patient_id" value="<?php echo($patient_id); ?>">
                                             </div>
 
 

@@ -63,6 +63,7 @@ class Reception extends  Im_Controller
         }
         else
         {
+            $data['patient_id']=$patient_id;
             $data['message_error'] = TRUE;
             $this->load->view('reception', $data);
         }
