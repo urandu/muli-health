@@ -44,10 +44,10 @@ class Reception extends  Im_Controller
 
 
 
-    public function get_patient()
+    public function get_patient($patient_id)
     {
 
-        $patient_id=$this->input->post("patient_id");
+        //$patient_id=$this->input->post("patient_id");
         if(!$patient_id)
         {
             $this->load->view('reception_home');

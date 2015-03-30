@@ -24,8 +24,8 @@
     <link href="<?php echo(base_url());?>public/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="<?php echo(base_url());?>public/bower_components/morrisjs/morris.css" rel="stylesheet">
-
+    <!--<link href="<?php /*echo(base_url());*/?>public/bower_components/morrisjs/morris.css" rel="stylesheet">-->
+    <script src="<?php echo(base_url());?>public/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Custom Fonts -->
     <link href="<?php echo(base_url());?>public/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 

@@ -43,7 +43,32 @@
     </div>
     <!-- /#wrapper -->
 
-<script>
+    <script>
+
+        $(document).ready(function() {
+            ws = new WebSocket("ws://localhost:8980");
+
+            ws.onopen = function() {
+                ws.send("hello server");
+            };
+            ws.onclose = function() {};
+
+            ws.onmessage = function(evt) {
+                console.log(evt.data);
+                var message = JSON.parse(evt.data);
+                console.log(message);
+                // code to update the page given the incoming message
+
+                // send a dummy message back to initiate
+                // the onmessage callback again
+                ws.send("next message please!");
+                window.location.replace('http://localhost/muli/finance/get_patient/'+message.event);
+
+            }
+        });
+    </script>
+
+<!--<script>
 
 setInterval(function(){
 
@@ -59,5 +84,7 @@ setInterval(function(){
 
 
 </script>
+-->
+
 
 <?php include_once('footer.php') ?>
