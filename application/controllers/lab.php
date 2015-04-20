@@ -68,6 +68,43 @@ class Lab extends  Im_Controller
         $this->doctor_model->save_lab_result($test_id,$test_result,$staff_id);
     }
 
+
+    public function do_upload($patient_id)
+    {
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size']	= '5000000000';
+        //$config['file_name']=md5(time()).".pdf";
+
+        $config['max_width']  = '1024';
+        $config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            $error = array('error' => $this->upload->display_errors());
+
+            redirect(base_url()."lab/get_patient/".$patient_id);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+
+            $pic=$this->upload->data()['file_name'];
+            //$result=$this->input->post('result');
+
+            $test_result=$this->input->post('result');
+            $test_id=$this->input->post('test_id');
+            $staff_id=$this->session->userdata('user_id');
+            $this->load->model('doctor_model');
+            $this->doctor_model->save_lab_result($test_id,$test_result,$staff_id,$pic);
+
+            redirect(base_url()."lab/get_patient/".$patient_id);
+        }
+    }
+
 }
 
 /* End of file welcome.php */

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" warnedAboutFileOutOfSourceRoot="true" version="3" currentProject="$PROJECT_DIR$/public/bower_components/flot/Makefile" compilerSelect="AUTO" />
-  <component name="IdProvider" IDEtalkID="80B430B76FB178F441183EAEFAD5042C" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" currentProject="$PROJECT_DIR$/public/bower_components/flot/Makefile" compilerSelect="AUTO" />
+  <component name="IdProvider" IDEtalkID="68E5EAA1B8114CD411EAF7B2430B2581" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">

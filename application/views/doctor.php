@@ -108,8 +108,9 @@
 
                                             <div class="form-group">
                                                 <label>Select allergy</label>
-                                                <select id="allergy" class="form-control" placeholder="Enter diagnosis here">-->
-                                                    " class="form-control">
+                                                <select id="allergy" class="form-control" placeholder="Enter diagnosis here">
+
+                                                    <option>none</option>
                                                     <?php if(isset($allergy_names) && $allergy_names>0) {
                                                         foreach($allergy_names as $allergy_name){
                                                             ?>
@@ -185,8 +186,8 @@
 
                                             <div class="form-group">
                                                 <label>Select disease</label>
-                                                <select id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">-->
-                                                    " class="form-control">
+                                                <select id="diagnosis1" class="form-control" placeholder="Enter diagnosis here">
+                                                    <option>none</option>
                                                     <?php if(isset($diseases) && $diseases>0) {
                                                         foreach($diseases as $disease){
                                                             ?>
@@ -251,6 +252,7 @@
                                             <div class="form-group">
                                                 <label>Select drug</label>
                                                 <select id="prescription" class="form-control">
+                                                    <option>none</option>
                                                     <?php if(isset($drugs) && $drugs>0) {
                                                         foreach($drugs as $drug){
                                                         ?>
@@ -313,7 +315,16 @@
 
                                                                             <p>
                                                                                 <?php if(isset($lab_test->test_result)) {
+
                                                                                     echo($lab_test->test_result);
+
+                                                                                    if(isset($lab_test->image)) {
+
+                                                                                        ?>
+                                                                                        <img src="<?php echo(base_url()) ?>uploads/<?php echo($lab_test->image); ?>">
+                                                                                    <?php
+                                                                                    }
+
                                                                                 }else{
                                                                                     ?>
                                                                                 Results Not Entered.
@@ -363,8 +374,9 @@
 
                                             <div class="form-group">
                                                 <label>Select test</label>
-                                                <select id="test_done" class="form-control" placeholder="Enter diagnosis here">-->
-                                                    " class="form-control">
+                                                <select id="test_done" class="form-control" placeholder="Enter diagnosis here">
+
+                                                    <option>none</option>
                                                     <?php if(isset($lab_test_names) && $lab_test_names>0) {
                                                         foreach($lab_test_names as $lab_test_name){
                                                             ?>

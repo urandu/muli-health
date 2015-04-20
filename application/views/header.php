@@ -121,6 +121,7 @@
                 <?php
                 if($this->session->all_userdata()['role']!=-1)
                 {
+                echo("<a href='".base_url()."' >Home</a>");
                     ?>
                 <a href="#">Patients queue
 
@@ -133,9 +134,11 @@
                    <?php
 
 
+
                    if($this->session->all_userdata()['role']==1)
                    {
                        echo(queue(0));
+
                    }elseif($this->session->all_userdata()['role']==0)
                    {
                        echo(queue(1));
@@ -156,6 +159,12 @@
                    ?>
 
                     <?php
+
+                    if($this->session->all_userdata()['role']!=-1) {
+                        echo("<a href='" . base_url() . "patient/all/' >Patients I have served</a>");
+
+                    }
+
                     if($this->session->all_userdata()['role']!=-1)
                     {
                     ?>

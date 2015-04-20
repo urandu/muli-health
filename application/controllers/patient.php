@@ -21,6 +21,13 @@ class Patient extends Im_Controller
         $this->load->view('patient_history',$data);
 
     }
+    function all()
+    {
+        $staff_id=$this->session->userdata('user_id');
+        $role=$this->session->userdata('role');
+
+
+    }
 
 
 }

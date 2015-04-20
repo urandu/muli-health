@@ -232,13 +232,14 @@ class Doctor_model extends CI_Model
     }
 
 
-    function save_lab_result($test_id,$test_result,$staff_id)
+    function save_lab_result($test_id,$test_result,$staff_id,$pic=null)
     {
 
 
         $data = array(
             'test_result' => $test_result,
-            'staff_id'=>$staff_id
+            'staff_id'=>$staff_id,
+            'image'=>$pic
 
         );
 

@@ -1,6 +1,6 @@
 <?php include_once('header.php') ?>
     <!-- Page Content -->
-    <div id="page-wrapper">
+    <div id="page-wrapper" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -71,15 +71,18 @@
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                                <h4 class="modal-title" id="myModalLabel"><?php echo($lab_test->test_done." (".$patient[0]->name.")");  ?></h4>
+                                                                                <h4 class="modal-title" id="myModalLabel"><?php get_lab_test_name($lab_test->test_done);echo(" (".$patient[0]->name.")");  ?></h4>
                                                                             </div>
+                                                                            <form method="post" enctype="multipart/form-data" action="<?php echo(base_url());?>lab/do_upload/<?php echo($patient[0]->patient_id);?>" >
                                                                             <div class="modal-body">
+
 
                                                                                 <div class="form-group">
                                                                                     <label>Enter results</label>
-                                                                                    <input id="result_input_<?php echo($lab_test->test_id);  ?>" class="form-control" placeholder="results">
+                                                                                    <input name="result" id="result_input_<?php echo($lab_test->test_id);  ?>" class="form-control" placeholder="results">
                                                                                 </div>
 
+                                                                                    <input name="test_id" type="hidden" value="<?php echo($lab_test->test_id); ?>" >
                                                                                 <div class="form-group">
                                                                                     <label>Attach image</label>
                                                                                     <input id="result_image_<?php echo($lab_test->test_id);  ?>" type="file">
@@ -89,8 +92,17 @@
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                                <button type="button" onclick="save_lab_result(<?php echo($lab_test->test_id);  ?>)" class="btn btn-primary">Save</button>
+                                                                                <input type="submit" class="btn" value="upload" />
                                                                             </div>
+                                                                            </form>
+
+
+
+
+
+
+
+
                                                                         </div>
                                                                         <!-- /.modal-content -->
                                                                     </div>

@@ -100,6 +100,10 @@ class User extends CI_Controller {
             {
                 redirect('finance');
             }
+            elseif($role==-1)
+            {
+                redirect('admin_home');
+            }
             else
             {
                 show_404();

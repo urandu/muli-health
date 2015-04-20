@@ -38,40 +38,42 @@
                                         <form method="post" action="<?php echo(base_url()); ?>reception/new_patient" >
 										<div class="col-lg-6">
 
-                                            <div class="form-group">
-                                                <label>patient_no</label>
-                                                <input class="form-control" contenteditable="false"  name="patient_id" id="patient_id" value="<?php echo($patient_id); ?>">
-                                            </div>
+
+                                               <!-- <label>patient_no</label>-->
+                                                <input class="form-control" type="hidden" contenteditable="false"  name="patient_id" id="patient_id" value="<?php echo($patient_id); ?>">
+
 
 
                                             <div class="form-group">
                                                 <label>ID number</label>
-                                                <input class="form-control" name="id_num" id="id_num" placeholder="Enter ID number">
+                                                <input class="form-control" required  pattern="[0-9]{8}" name="id_num" id="id_num" placeholder="Enter ID number">
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Sir name</label>
-                                                <input class="form-control" name="sir_name" id="sir_name" placeholder="Enter sir name">
+                                                <label>Surname</label>
+                                                <input class="form-control"  required pattern="[a-zA-Z`]+" name="sir_name" id="sir_name" placeholder="Enter sir name">
                                             </div>
 
                                             <div class="form-group">
 												<label>Name</label>
-												<input class="form-control" name="name" id="name" placeholder="Enter patient name">
+												<input required class="form-control" required pattern="[a-z A-Z`]+" name="name" id="name" placeholder="Enter patient name">
 											</div>
 											<div class="form-group">
-												<label>Address</label>
-												<input class="form-control" name="address" id="address" placeholder="Enter patient address">
+												<label>Address (eg 1254,kendu bay)</label>
+												<input class="form-control"  pattern="[1-9][0-9]+[,][A-Za-z0-9]+" name="address" id="address" placeholder="Enter patient address">
 											</div>
 											<div class="form-group">
                                             <label>Sex</label>
-                                            <select id="sex" name="sex" class="form-control">
+                                            <select required id="sex"  name="sex" class="form-control">
+                                                <option>select gender</option>
                                                 <option value="male" >male</option>
                                                 <option value="female" >female</option>
                                             </select>
                                         </div>
                                             <div class="form-group">
                                                 <label>Insured</label>
-                                                <select id="insured" name="insured" class="form-control">
+                                                <select required  id="insured" name="insured" class="form-control">
+                                                    <option>select </option>
                                                     <option value="yes" >yes</option>
                                                     <option value="no" >no</option>
                                                 </select>
@@ -80,11 +82,11 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Date of Birth</label>
-												<input type="date" class="form-control" name="dob" id="dob" placeholder="Enter DoB">
+												<input required type="date" class="form-control" name="dob" id="dob" placeholder="Enter DoB">
 											</div>
 											<div class="form-group">
-												<label>Phone</label>
-												<input class="form-control" name="phone" id="phone" placeholder="Enter phone number">
+												<label>Phone (eg 0722111333)</label>
+												<input  pattern="[0][7][237810][0-9]{7}" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
 											</div>
 											<div class="form-group">
 												<label>Email</label>
@@ -94,7 +96,7 @@
 
                                             <div class="form-group">
                                                 <label>NHIF NO.</label>
-                                                <input type="text" name="nhif" class="form-control" id="nhif" placeholder="Enter nhif number">
+                                                <input  type="text" name="nhif" class="form-control" id="nhif" placeholder="Enter nhif number">
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-lg pull-right">Save</button>
 										</div>

@@ -22,10 +22,10 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <!-- Nav tabs -->
-                            <form method="post" action="<?php echo(base_url()); ?>reception/get_patient">
+                           <!-- <form method="post" action="<?php /*echo(base_url()); */?>reception/get_patient">
                                 <input type="text" pattern="[A-F0-9]{8}" title="please enter an 8 character hexadecimal number"  name="patient_id" placeholder="enter patient number" />
                                 <input type="submit" value="submit" class="btn primary">
-                            </form>
+                            </form>-->
 
                         </div>
                         <!-- /.panel-body -->
