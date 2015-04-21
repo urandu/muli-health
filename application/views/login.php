@@ -42,7 +42,7 @@
                 </div>-->
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h2>Muli health</h2>
+                        <h2>Uni health <i class="fa fa-plus fa-lg"></i></h2>
                         <?php if(isset($message_error)){ echo('wrong username or password');} ?>
                         <h3 class="panel-title">Please Sign In To Continue.</h3>
                     </div>

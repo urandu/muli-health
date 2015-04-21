@@ -24,11 +24,51 @@ class Reception_model extends CI_Model
 
 
     }
+
+
+    function new_patient_edit($patient_id,$name,$sex,$dob,$phone,$email,$address,$insured,$nhif,$sir_name,$id_num,$id)
+    {
+        $details=array(
+            'patient_id'=>$patient_id,
+            'name'=>$name,
+            'sex'=>$sex,
+            'dob'=>$dob,
+            'phone'=>$phone,
+            'email'=>$email,
+            'address'=>$address,
+            'insured'=>$insured,
+            'nhif'=>$nhif,
+            'sir_name'=>$sir_name,
+            'id_num'=>$id_num
+        );
+
+        $this->db->where('id_num',$id);
+        return $this->db->update('patient_profile',$details);
+
+
+    }
+
+
+
+
     function get_patient($patient_id)
     {
 
        // $sql="SELECT * FROM patient_profile WHERE patient_id=".$patient_id;
         $this->db->where(array('patient_id'=>$patient_id));
+        $query=$this->db->get('patient_profile');
+        if($query->num_rows>0) {
+            return $query->result();
+        }else{
+            return false;
+        }
+
+    }
+    function get_patient_by_id($patient_id)
+    {
+
+        // $sql="SELECT * FROM patient_profile WHERE patient_id=".$patient_id;
+        $this->db->where(array('id_num'=>$patient_id));
         $query=$this->db->get('patient_profile');
         if($query->num_rows>0) {
             return $query->result();

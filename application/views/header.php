@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>muli health</title>
+    <title>uni health</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo(base_url());?>public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="<?php echo(base_url()); ?>">Muli Health</a>
+    <a class="navbar-brand" href="<?php echo(base_url()); ?>">Uni Health <i class="fa fa-plus"></i></a>
 </div>
 <!-- /.navbar-header -->
 
@@ -104,14 +104,14 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li class="sidebar-search">
-                <div class="input-group custom-search-form">
+                <!--<div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search patient...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
-                </div>
+                </div>-->
 
                 <!-- /.nav-second-level -->
             </li>
@@ -161,13 +161,20 @@
                     <?php
 
                     if($this->session->all_userdata()['role']!=-1) {
-                        echo("<a href='" . base_url() . "patient/all/' >Patients I have served</a>");
+                      /*  echo("<a href='" . base_url() . "patient/all/' >Patients I have served</a>");*/
+
+                    }
+
+                    if($this->session->all_userdata()['role']==1) {
+                        echo("<a href='" . base_url() . "patient/by_id/' >Search patient via ID No.</a>");
+
 
                     }
 
                     if($this->session->all_userdata()['role']!=-1)
                     {
                     ?>
+
 
 
                     </a>
@@ -177,6 +184,7 @@
                             ?>
                         <a href="<?php echo(base_url());?>admin_home/new_user" >New staff</a>
 
+                           <a href="<?php echo(base_url());?>patient/reports/" >Reports</a>
                         <?php
 
 

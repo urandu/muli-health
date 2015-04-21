@@ -35,7 +35,8 @@
                                             <th>Patient ID</th>
                                             <th>Sex</th>
                                             <th>Date of Birth</th>
-                                            <th>.</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -71,6 +72,7 @@
                                                 <td><a href="<?php echo(base_url()); ?>reception/start_visit/<?php echo($patient[0]->patient_id); ?>" ><button class="btn-primary" >Send to Doctor</button></a></td>
                                            <?php
                                             } ?>
+                                            <td><a href="<?php echo(base_url()); ?>reception/edit_patient_home/<?php echo($patient[0]->patient_id); ?>" ><button class="btn-primary" >edit patient info</button></a></td>
 
                                         </tr>
 

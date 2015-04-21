@@ -13,7 +13,25 @@
 <!--<script src="<?php /*echo(base_url());*/?>public/bower_components/morrisjs/morris.min.js"></script>-->
 <!--<script src="<?php /*echo(base_url());*/?>public/js/morris-data.js"></script>-->
 
+<!-- Morris Charts JavaScript -->
+<script src="<?php echo(base_url());?>public/bower_components/raphael/raphael-min.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/morrisjs/morris.min.js"></script>
+<script src="<?php echo(base_url());?>public/js/morris-data.js"></script>
+
+
+<!-- Flot Charts JavaScript -->
+<script ssrc="<?php echo(base_url());?>public/bower_components/flot/excanvas.min.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/flot/jquery.flot.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/flot/jquery.flot.pie.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/flot/jquery.flot.resize.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/flot/jquery.flot.time.js"></script>
+<script src="<?php echo(base_url());?>public/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="<?php echo(base_url());?>public/js/flot-data.js"></script>
+
 <!-- Custom Theme JavaScript -->
+
+
+
 <script src="<?php echo(base_url());?>public/dist/js/sb-admin-2.js"></script>
 
 </body>

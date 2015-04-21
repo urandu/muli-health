@@ -12,6 +12,11 @@ class Patient extends Im_Controller
 
 	}
 
+    function reports()
+    {
+        $this->load->view('reports');
+    }
+
     function patient_history($patient_no)
     {
 
@@ -26,6 +31,14 @@ class Patient extends Im_Controller
         $staff_id=$this->session->userdata('user_id');
         $role=$this->session->userdata('role');
 
+
+    }
+
+    function by_id()
+    {
+
+
+        $this->load->view('search_by_id');
 
     }
 
