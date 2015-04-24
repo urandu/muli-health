@@ -34,6 +34,72 @@
 
 <script src="<?php echo(base_url());?>public/dist/js/sb-admin-2.js"></script>
 
+
+<!--<script>
+
+    //Flot Multiple Axes Line Chart
+    $(function(){
+
+    var oilprices = [
+        [2012, 61],
+        [2013, 58],
+        [2014, 57],
+        [2015, 56],
+        [2016, 55],
+        [2017, 55]
+
+    ];
+
+
+
+
+    function doPlot(position) {
+        $.plot($("#flot-line-chart-multi"), [{
+            data: oilprices,
+            label: " malaria "
+        }
+        ], {
+            xaxes: [{
+                //mode: null,
+                //tickDecimals: null
+                min: 2009
+            }],
+            yaxes: [{
+                min: 0
+            }, {
+                // align if we are to the right
+                alignTicksWithAxis: position == "right" ? 1 : null,
+                position: position
+            }],
+            legend: {
+                position: 'sw'
+            },
+            grid: {
+                hoverable: true //IMPORTANT! this is needed for tooltip to work
+            },
+            tooltip: true,
+            tooltipOpts: {
+                content: "%s for %x was %y",
+                xDateFormat: "%y",
+
+                onHover: function(flotItem, $tooltipEl) {
+                    // console.log(flotItem, $tooltipEl);
+                }
+            }
+
+        });
+    }
+
+    doPlot("right");
+
+    $("button").click(function() {
+        doPlot($(this).text());
+    });
+    });
+
+</script>-->
+
+
 </body>
 
 </html>

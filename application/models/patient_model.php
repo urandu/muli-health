@@ -20,6 +20,12 @@ class Patient_model extends CI_Model
 
     }
 
+    function get_malaria_total()
+    {
+        $query = $this->db->get('malaria_total');
+        return $query->result();
+    }
+
     function get_patient_history($patient_no)
     {
 

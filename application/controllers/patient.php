@@ -14,7 +14,10 @@ class Patient extends Im_Controller
 
     function reports()
     {
-        $this->load->view('reports');
+        $this->load->model('patient_model');
+        $malaria=$this->patient_model->get_malaria_total();
+        $data['malaria']=$malaria;
+        $this->load->view('reports',$data);
     }
 
     function patient_history($patient_no)

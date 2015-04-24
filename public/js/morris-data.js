@@ -41,7 +41,7 @@ $(function() {
             period: '2011 Q4',
             iphone: 15073,
             ipad: 5967,
-            itouch: 5175
+            itouch: 500
         }, {
             period: '2012 Q1',
             iphone: 10687,

@@ -196,9 +196,14 @@ function add_medical_profile()
         {
 
             host=$('#save_medical_profile').val('saved');
+            alert('successfully saved');
 
 
 
+        });
+        posting_comment.always(function(data){
+            /*host=$('#save_medical_profile').val('saved');
+            alert('successfully saved');*/
         });
     }
 
